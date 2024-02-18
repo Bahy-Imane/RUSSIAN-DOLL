@@ -1,21 +1,21 @@
-public class DOLL {
-    private int taille;
-    private Boolean opening = false;
-    private DOLL in, Contains;
+public abstract class DOLL {
+    private final int  tail;
+    private boolean opening;
+    private DOLL in, contains;
 
-    public int getTaille() {
-        return taille;
+    public DOLL(int tail) {
+        this.tail = tail;
     }
 
-    public void setTaille(int taille) {
-        this.taille = taille;
+    public int getTail() {
+        return tail;
     }
 
-    public Boolean getOpening() {
+    public boolean getOpening() {
         return opening;
     }
 
-    public void setOpening(Boolean opening) {
+    public void setOpen(boolean opening) {
         this.opening = opening;
     }
 
@@ -28,55 +28,20 @@ public class DOLL {
     }
 
     public DOLL getContains() {
-        return Contains;
+        return contains;
     }
 
     public void setContains(DOLL contains) {
-        Contains = contains;
+        this.contains = contains;
     }
 
+    public abstract void Open();
 
+    public abstract void Close();
 
-    public DOLL(int taille){       //constructeur;
-        this.taille = getTaille();
-        this.opening = getOpening();
-    }
+    public abstract void PlaceIn(DOLL doll);
 
-   void Open () {
-        if (!this.opening && this.in == null) {
-            System.out.println("Doll is opened .");
-            this.opening = true;
-        }
-        else {
-            System.out.println("can't open the doll");
-        }
-    }
-
-    void Close(){
-    if (this.opening && this.in==null) {
-        System.out.println("Doll is closed .");
-        this.opening = false;
-        }
-    }
-
-    void PlaceIn(DOLL P){
-    if (this.opening && this.in==null && P.opening && P.Contains==null && P.taille>this.taille){
-        this.in = P;
-        P.Contains = this ;
-        System.out.println("Doll is placed in .");
-        }
-    }
-
-
-    void GetOutOf(DOLL P){
-    if (P.Contains==this && P.opening){
-        this.in = null;
-        P.Contains = null;
-        System.out.println("Doll is got out of .");
-        }
-
-    }
-
+    public abstract void GetOutOf(DOLL doll);
 }
 
 
